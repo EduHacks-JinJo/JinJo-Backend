@@ -22,14 +22,6 @@ app.use(passport.initialize());
 var routes = require('./api/routes/routes'); //importing route
 routes(app); //register the route
 
-app.listen(port);
-
-console.log('Jinjo Server started on: ' + port);
-
-app.use(function(req, res) {
-    res.status(404).send({url: req.originalUrl + ' not found'})
-});
-
 // Add headers
 app.use(function (req, res, next) {
     // Website you wish to allow to connect
@@ -43,4 +35,12 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Credentials', true);
     // Pass to next layer of middleware
     next();
+});
+
+app.listen(port);
+
+console.log('Jinjo Server started on: ' + port);
+
+app.use(function(req, res) {
+    res.status(404).send({url: req.originalUrl + ' not found'})
 });
