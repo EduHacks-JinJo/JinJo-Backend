@@ -14,7 +14,7 @@ exports.create_question = function(req, res) {
     var new_question = new Questions({
         question: req.body.question,
         upvotes: 0,
-        classID: req.body.classID,
+        classID: req.body.roomID,
         isAnswered: false
     });
     new_question.save(function(err, task) {
@@ -39,14 +39,16 @@ exports.get_questions = function(req,res) {
     try {
         Classrooms.findOne({roomID: req.body.roomID},
             function(err, classroom) {
-                Questions.find({
-                    classID: classroom._id
-                }, function(err, questions) {
-                    if (err) return null;
-                    if (questions !== null) {
-                        res.json(questions);
-                    }
-                });
+                if (classroom !== null) {
+                    Questions.find({
+                        classID: classroom._id
+                    }, function(err, questions) {
+                        if (err) return null;
+                        if (questions !== null) {
+                            res.json(questions);
+                        }
+                    });
+                }
             });
     } catch(e) {
         console.log('Error: ', e);
