@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
 
 exports.create_question = function(req, res) {
     var new_question = new Questions(req.body);
+
     new_question.save(function(err, task) {
         if (err)
             res.send(err);
@@ -27,14 +28,13 @@ exports.get_all_questions = function(req, res) {
 // get given a classroomid find questions
 exports.get_questions = function(req,res) {
 try {
-        Questions.findOne({classID: req.body.id},
+        Questions.find({classID: req.body.id},
             function (err, questions) {
                 if (err) return null;
                 if (questions !== null) {
                     res.json(questions)
                 }
             });
-
     } catch (e) {
         console.log('Error: ', e);
         res.json({message: e});
@@ -42,19 +42,16 @@ try {
 };
 
 // answer q 
-/*
+
 exports.answer_question = function(req, res){
 try {
-        Questions.findOneAndUpdate({_id: req.body.id},
+        Questions.findOneAndUpdate({_id: req.body.id}, {$set isAnswered: true},
             function (err, questions) {
                 if (err) return null;
-                if (questions !== null) {
-                    let Questions.isAnswered = true;
-                }
             });
-
     } catch (e) {
         console.log('Error: ', e);
         res.json({message: e});
     }
-    */
+};
+
