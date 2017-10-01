@@ -10,4 +10,4 @@ var ClassroomSchema = new Schema({
     courseID: Number
 });
 
-module.exports = mongoose.model('Instructors', InstructorSchema);
+module.exports = mongoose.model('Classrooms', ClassroomSchema);
