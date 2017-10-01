@@ -37,24 +37,22 @@ exports.get_all_questions = function(req, res) {
 // get given a roomID (code) find questions
 exports.get_questions = function(req,res) {
     try {
-        Classrooms.findOne({roomID: req.body.roomID},
-            function(err, classroom) {
-                if (classroom !== null) {
-                    Questions.find({
-                        classID: classroom._id
-                    }, function(err, questions) {
-                        if (err) return null;
-                        if (questions !== null) {
-                            res.json(questions);
-                        }
-                    });
-                }
-            });
+        Questions.find({
+            classID: req.body.roomID
+        }, function(err, questions) {
+            if (err) return null;
+
+            console.log('Questions: ', questions);
+            if (questions !== null) {
+                res.json(questions);
+            }
+        });
     } catch(e) {
         console.log('Error: ', e);
         res.json({ message: e});
     }
 };
+
 // answer q
 
 exports.answer_question = function(req, res){
