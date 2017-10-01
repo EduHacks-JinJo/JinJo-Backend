@@ -28,15 +28,7 @@ exports.create_question = function(req, res) {
         if (err)
             res.send(err);
 
-        Questions.find({
-            classID: req.body.roomID
-        },null, {sort: '-date'}, function(err, questions) {
-            if (err) return null;
-            if (questions !== null) {
-                socket.to(req.body.roomID).emit('questions', questions);
-                res.json(task);
-            }
-        });
+        res.json(task);
     });
 };
 
