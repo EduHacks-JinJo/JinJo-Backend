@@ -53,19 +53,17 @@ exports.get_questions = function(req,res) {
         res.json({ message: e});
     }
 };
+// answer q
+    /**
 
-/*
- exports.answer_question = function(req, res){
- try {
- Questions.findOneAndUpdate({_id: req.body.id},
- function (err, questions) {
- if (err) return null;
- if (questions !== null) {
- let Questions.isAnswered = true;
- }
- });
-
- } catch (e) {
- res.json({message: e});
- }
- */
+exports.answer_question = function(req, res){
+try {
+        Questions.findOneAndUpdate({_id: req.body.id}, {$set isAnswered: true},
+            function (err, questions) {
+                if (err) return null;
+            });
+    } catch (e) {
+        console.log('Error: ', e);
+        res.json({message: e});
+    }
+}; */
