@@ -54,16 +54,42 @@ exports.get_questions = function(req,res) {
     }
 };
 // answer q
-    /**
 
 exports.answer_question = function(req, res){
 try {
-        Questions.findOneAndUpdate({_id: req.body.id}, {$set isAnswered: true},
-            function (err, questions) {
-                if (err) return null;
-            });
+        Questions.findOneAndUpdate({_id: req.body.id}, {$set: {isAnswered: true}}, {new:true}, function(err, questions) {
+        if (err)
+            res.send(err);
+        res.json(questions);
+    });
     } catch (e) {
         console.log('Error: ', e);
         res.json({message: e});
     }
-}; */
+};
+
+exports.upvote = function(req, res){
+try {
+        Questions.findOneAndUpdate({_id: req.body.id}, {$inc: {upvotes: 1}}, {new:true}, function(err, questions) {
+        if (err)
+            res.send(err);
+        res.json(questions);
+    });
+    } catch (e) {
+        console.log('Error: ', e);
+        res.json({message: e});
+    }
+};
+
+exports.downvote = function(req, res){
+try {
+        Questions.findOneAndUpdate({_id: req.body.id}, { $inc: {upvotes: -1}}, {new:true}, function(err, questions) {
+        if (err)
+            res.send(err);
+        res.json(questions);
+    });
+    } catch (e) {
+        console.log('Error: ', e);
+        res.json({message: e});
+    }
+};

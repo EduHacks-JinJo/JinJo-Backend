@@ -13,11 +13,13 @@ module.exports = function(app) {
     app.route('/classrooms').post(classroom.get_classrooms);
     app.route('/classrooms/courses').post(classroom.get_all_courses);
 
-    //app.route('/answer').post(classroom.answer_question);
+    
 
     var question = require('../controllers/questionController');
     app.route('/allquestions').get(question.get_all_questions);
     app.route('/questions').post(question.get_questions);
     app.route('/question').post(question.create_question);
+    app.route('/answer').post(question.answer_question);
     app.route('/downvote').post(question.downvote);
+    app.route('/upvote').post(question.upvote);
 };
