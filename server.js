@@ -8,7 +8,7 @@ var express = require('express'),
     Questions = require('./api/models/questionModel'),
     bodyParser = require('body-parser'),
     https = require('https').Server(app),
-    socket = require('socket.io')(app);
+    socket = require('socket.io')(https, { origins: '*:*'});
 
 var passport = require('passport');
 

@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
 var express = require('express'),
     app = express(),
     https = require('https').Server(app),
-    socket = require('socket.io')(app);
+    socket = require('socket.io')(https, { origins: '*:*'});
 
 
 // create question
