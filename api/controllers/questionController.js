@@ -41,8 +41,6 @@ exports.get_questions = function(req,res) {
             classID: req.body.roomID
         }, function(err, questions) {
             if (err) return null;
-
-            console.log('Questions: ', questions);
             if (questions !== null) {
                 res.json(questions);
             }

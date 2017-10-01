@@ -88,7 +88,7 @@ exports.get_classrooms = function(req,res) {
                 Classrooms.find({
                     teacherID: decodedID,
                     courseID: req.body.courseID
-                }, function(err, classrooms) {
+                },null, {sort: '-date'}, function(err, classrooms) {
                     if (err) return null;
                     if (classrooms !== null) {
                         res.json(classrooms);
