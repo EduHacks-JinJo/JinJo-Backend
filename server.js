@@ -1,9 +1,11 @@
 var express = require('express'),
     cors = require('cors'),
     app = express(),
-    port = process.env.PORT || 3000,
+    port = process.env.PORT || 8082,
     mongoose = require('mongoose'),
     Instructors = require('./api/models/instructorsModel'),
+    Classrooms = require('./api/models/classroomModel'),
+    Questions = require('./api/models/questionModel'),
     bodyParser = require('body-parser');
 
 var passport = require('passport');

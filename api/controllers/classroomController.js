@@ -21,7 +21,20 @@ exports.get_all_classrooms = function(req, res) {
             res.send(err);
         res.json(classrooms);
     });
+};
 
+exports.get_classrooms = function(req,res) {
+    try {
+        Classrooms.findOne({teacherID: req.body.id},
+            function (err, questions) {
+                if (err) return null;
+                if (classrooms !== null) {
+                    res.json(classrooms)
+                }
+            });
 
-
+    } catch (e) {
+        console.log('Error: ', e);
+        res.json({message: e});
+    }
 };

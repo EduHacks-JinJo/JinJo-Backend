@@ -7,7 +7,7 @@ var ClassroomSchema = new Schema({
     teacherID: Number,
     date: Date,
     classname: String,
-    courseID: Number
+    courseID: String
 });
 
 module.exports = mongoose.model('Classrooms', ClassroomSchema);

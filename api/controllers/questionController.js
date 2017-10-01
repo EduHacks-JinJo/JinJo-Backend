@@ -27,7 +27,7 @@ exports.get_all_questions = function(req, res) {
 // get given a classroomid find questions
 exports.get_questions = function(req,res) {
 try {
-        Questions.findOne({_id: req.body.id},
+        Questions.findOne({classID: req.body.id},
             function (err, questions) {
                 if (err) return null;
                 if (questions !== null) {
@@ -40,3 +40,21 @@ try {
         res.json({message: e});
     }
 };
+
+// answer q 
+/*
+exports.answer_question = function(req, res){
+try {
+        Questions.findOneAndUpdate({_id: req.body.id},
+            function (err, questions) {
+                if (err) return null;
+                if (questions !== null) {
+                    let Questions.isAnswered = true;
+                }
+            });
+
+    } catch (e) {
+        console.log('Error: ', e);
+        res.json({message: e});
+    }
+    */

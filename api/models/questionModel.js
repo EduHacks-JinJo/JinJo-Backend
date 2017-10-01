@@ -5,7 +5,8 @@ const bcrypt = require('bcrypt');
 var QuestionSchema = new Schema({
     question: String,
     upvotes: Number,
-    classID: Number
+    classID: Number,
+    isAnswered: Boolean
 });
 
 module.exports = mongoose.model('Questions', QuestionSchema);
