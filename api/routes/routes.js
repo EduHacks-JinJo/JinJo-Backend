@@ -5,6 +5,7 @@ module.exports = function(app) {
 
     app.route('/auth/login').post(instructor.login_instructor);
     app.route('/auth/create').post(instructor.create_instructor);
+    app.route('/instructors').get(instructor.get_all_instructors);
 
 
     /** example stuff
