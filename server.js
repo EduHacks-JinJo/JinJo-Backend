@@ -7,8 +7,8 @@ var express = require('express'),
     Classrooms = require('./api/models/classroomModel'),
     Questions = require('./api/models/questionModel'),
     bodyParser = require('body-parser'),
-    http = require('http').Server(app),
-    socket = require('socket.io')(http);
+    https = require('https').Server(app),
+    socket = require('socket.io')(https);
 
 var passport = require('passport');
 
