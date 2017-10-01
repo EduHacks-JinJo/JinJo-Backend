@@ -1,6 +1,12 @@
 'use strict';
 
 module.exports = function(app) {
+    var instructor = require('../controllers/instructorsController');
+
+    app.route('/auth/login').post(instructor.login_instructor);
+    app.route('/auth/create').post(instructor.create_instructor);
+
+
     /** example stuff
     var user = require('../controllers/userController');
 

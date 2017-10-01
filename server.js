@@ -2,7 +2,7 @@ var express = require('express'),
     app = express(),
     port = process.env.PORT || 3000,
     mongoose = require('mongoose'),
-    // User = require('./api/models/userModel'), //created model loading here
+    Instructors = require('./api/models/instructorsModel'),
     bodyParser = require('body-parser');
 
 var passport = require('passport');
@@ -16,16 +16,13 @@ mongoose.connect(uri, options);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 app.use(passport.initialize());
 
 
 var routes = require('./api/routes/routes'); //importing route
 routes(app); //register the route
 
-
 app.listen(port);
-
 
 console.log('Jinjo Server started on: ' + port);
 
