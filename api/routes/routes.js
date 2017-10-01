@@ -19,5 +19,5 @@ module.exports = function(app) {
     app.route('/allquestions').get(question.get_all_questions);
     app.route('/questions').post(question.get_questions);
     app.route('/question').post(question.create_question);
-    app.route('/downvote').post(question.downvote);
+    // app.route('/downvote').post(question.downvote);
 };
