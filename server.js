@@ -29,7 +29,7 @@ socket.on('connection', function (socket) {
 });
 
 // Add headers
-app.use(cors());
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 
 
 var routes = require('./api/routes/routes'); //importing route
