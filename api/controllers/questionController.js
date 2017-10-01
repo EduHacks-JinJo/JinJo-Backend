@@ -4,10 +4,12 @@ var mongoose = require('mongoose'),
     Questions = mongoose.model('Questions'),
     Classrooms = mongoose.model('Classrooms');
 
+/**
 var express = require('express'),
     app = express(),
     https = require('https').Server(app),
     socket = require('socket.io')(https, { origins: '*:*'});
+ */
 
 
 // create question

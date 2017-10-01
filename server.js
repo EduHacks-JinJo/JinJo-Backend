@@ -6,9 +6,12 @@ var express = require('express'),
     Instructors = require('./api/models/instructorsModel'),
     Classrooms = require('./api/models/classroomModel'),
     Questions = require('./api/models/questionModel'),
-    bodyParser = require('body-parser'),
-    https = require('https').Server(app),
+    bodyParser = require('body-parser');
+
+/**
+https = require('https').Server(app),
     socket = require('socket.io')(https, { origins: '*:*'});
+ **/
 
 var passport = require('passport');
 
@@ -23,19 +26,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(passport.initialize());
 
+/**
 socket.on('connection', function (socket) {
     // socket connected
     console.log('Connect established to Local Server');
-});
+}); */
 
 // Add headers
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+app.use(cors());
 
 
 var routes = require('./api/routes/routes'); //importing route
 routes(app); //register the route
 
-https.listen(port);
+app.listen(port);
 
 console.log('Jinjo Server started on: ' + port);
 
