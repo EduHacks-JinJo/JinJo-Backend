@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 var QuestionSchema = new Schema({
     question: String,
     upvotes: Number,
-    classID: Number,
+    classID: String,
     isAnswered: Boolean
 });
 

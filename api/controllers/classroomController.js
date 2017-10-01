@@ -40,9 +40,9 @@ exports.create_classroom = function(req, res) {
                 teacherID: decoded.data._id,
                 date: date,
                 classname: classname,
-                courseID:courseID
+                courseID: courseID
         });
-            new_classroom.save(function(err, task) {
+            new_classroom.save(function(err, room) {
                 if (err) {
                     console.log('Error in saving ', err);
                     res.send(err);
@@ -140,3 +140,4 @@ exports.get_all_courses = function(req, res) {
         res.json({message: e});
     }
 };
+

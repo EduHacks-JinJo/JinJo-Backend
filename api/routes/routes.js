@@ -17,6 +17,6 @@ module.exports = function(app) {
 
     var question = require('../controllers/questionController');
     app.route('/allquestions').get(question.get_all_questions);
-    app.route('/questions').get(question.get_questions);
+    app.route('/questions').post(question.get_questions);
     app.route('/question').post(question.create_question);
 };

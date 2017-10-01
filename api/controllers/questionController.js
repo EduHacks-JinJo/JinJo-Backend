@@ -1,12 +1,22 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Questions = mongoose.model('Questions');
+    Questions = mongoose.model('Questions'),
+    Classrooms = mongoose.model('Classrooms');
+
 
 // create question
 
+/**
+ * req = class id
+ * */
 exports.create_question = function(req, res) {
-    var new_question = new Questions(req.body);
+    var new_question = new Questions({
+        question: req.body.question,
+        upvotes: 0,
+        classID: req.body.classID,
+        isAnswered: false
+    });
     new_question.save(function(err, task) {
         if (err)
             res.send(err);
@@ -24,37 +34,38 @@ exports.get_all_questions = function(req, res) {
     });
 };
 
-// get given a classroomid find questions
+// get given a roomID (code) find questions
 exports.get_questions = function(req,res) {
-try {
-        Questions.findOne({classID: req.body.id},
-            function (err, questions) {
-                if (err) return null;
-                if (questions !== null) {
-                    res.json(questions)
-                }
+    try {
+        Classrooms.findOne({roomID: req.body.roomID},
+            function(err, classroom) {
+                Questions.find({
+                    classID: classroom._id
+                }, function(err, questions) {
+                    if (err) return null;
+                    if (questions !== null) {
+                        res.json(questions);
+                    }
+                });
             });
-
-    } catch (e) {
+    } catch(e) {
         console.log('Error: ', e);
-        res.json({message: e});
+        res.json({ message: e});
     }
 };
 
-// answer q 
 /*
-exports.answer_question = function(req, res){
-try {
-        Questions.findOneAndUpdate({_id: req.body.id},
-            function (err, questions) {
-                if (err) return null;
-                if (questions !== null) {
-                    let Questions.isAnswered = true;
-                }
-            });
+ exports.answer_question = function(req, res){
+ try {
+ Questions.findOneAndUpdate({_id: req.body.id},
+ function (err, questions) {
+ if (err) return null;
+ if (questions !== null) {
+ let Questions.isAnswered = true;
+ }
+ });
 
-    } catch (e) {
-        console.log('Error: ', e);
-        res.json({message: e});
-    }
-    */
+ } catch (e) {
+ res.json({message: e});
+ }
+ */
