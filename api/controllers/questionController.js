@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
 var express = require('express'),
     app = express(),
     https = require('https').Server(app),
-    socket = require('socket.io')(https);
+    socket = require('socket.io')(app);
 
 
 // create question
@@ -31,7 +31,7 @@ exports.create_question = function(req, res) {
         },null, {sort: '-date'}, function(err, questions) {
             if (err) return null;
             if (questions !== null) {
-                io.to(req.body.roomID).emit('questions', questions);
+                socket.to(req.body.roomID).emit('questions', questions);
                 res.json(task);
             }
         });
