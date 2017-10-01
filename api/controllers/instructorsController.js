@@ -43,7 +43,7 @@ exports.login_instructor = function(req, res) {
                 if (instructors !== null) {
                     //Generate Token
                     var token = jwt.sign({data: instructors}, 'this_is_a_test_secret_do_not_use_for_the_love_of_god', {
-                        expiresIn: 1440 // expires in 24 hours
+                        expiresIn: 2880 // expires in 24 hours
                     });
 
                     // return the information including token as JSON

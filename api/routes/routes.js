@@ -10,18 +10,13 @@ module.exports = function(app) {
     var classroom = require('../controllers/classroomController');
     app.route('/createroom').post(classroom.create_classroom);
     app.route('/allclassrooms').get(classroom.get_all_classrooms);
-    app.route('/classrooms').get(classroom.get_classrooms);
+    app.route('/classrooms').post(classroom.get_classrooms);
+    app.route('/classrooms/courses').post(classroom.get_all_courses);
+
     //app.route('/answer').post(classroom.answer_question);
 
     var question = require('../controllers/questionController');
     app.route('/allquestions').get(question.get_all_questions);
     app.route('/questions').get(question.get_questions);
     app.route('/question').post(question.create_question);
-    /** example stuff
-    var user = require('../controllers/userController');
-
-    // user Routes
-    app.route('/').post(user.create_user);
-    app.route('/users').get(authController.isAuthenticated, user.get_all_users);
-     **/
 };

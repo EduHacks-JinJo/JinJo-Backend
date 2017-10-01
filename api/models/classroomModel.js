@@ -1,10 +1,9 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
-const bcrypt = require('bcrypt');
 
 var ClassroomSchema = new Schema({
     roomID: String,
-    teacherID: Number,
+    teacherID: String,
     date: Date,
     classname: String,
     courseID: String
