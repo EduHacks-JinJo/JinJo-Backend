@@ -35,7 +35,7 @@ app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 var routes = require('./api/routes/routes'); //importing route
 routes(app); //register the route
 
-app.listen(port);
+https.listen(port);
 
 console.log('Jinjo Server started on: ' + port);
 
