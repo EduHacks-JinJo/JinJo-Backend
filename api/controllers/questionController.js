@@ -4,6 +4,11 @@ var mongoose = require('mongoose'),
     Questions = mongoose.model('Questions'),
     Classrooms = mongoose.model('Classrooms');
 
+var express = require('express'),
+    app = express(),
+    http = require('http').Server(app),
+    socket = require('socket.io')(http);
+
 
 // create question
 
@@ -20,7 +25,16 @@ exports.create_question = function(req, res) {
     new_question.save(function(err, task) {
         if (err)
             res.send(err);
-        res.json(task);
+
+        Questions.find({
+            classID: req.body.roomID
+        }, function(err, questions) {
+            if (err) return null;
+            if (questions !== null) {
+                io.to(req.body.roomID).emit('questions', questions);
+                res.json(task);
+            }
+        });
     });
 };
 

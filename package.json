@@ -17,10 +17,12 @@
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.1",
+    "http": "0.0.0",
     "jsonwebtoken": "^8.0.1",
     "mongoose": "^4.11.14",
     "passport": "^0.4.0",
-    "passport-http": "^0.3.0"
+    "passport-http": "^0.3.0",
+    "socket.io": "^2.0.3"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
