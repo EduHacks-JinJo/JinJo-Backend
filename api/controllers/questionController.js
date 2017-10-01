@@ -39,14 +39,16 @@ exports.get_questions = function(req,res) {
     try {
         Classrooms.findOne({roomID: req.body.roomID},
             function(err, classroom) {
-                Questions.find({
-                    classID: classroom._id
-                }, function(err, questions) {
-                    if (err) return null;
-                    if (questions !== null) {
-                        res.json(questions);
-                    }
-                });
+                if (classroom !== null) {
+                    Questions.find({
+                        classID: classroom._id
+                    }, function(err, questions) {
+                        if (err) return null;
+                        if (questions !== null) {
+                            res.json(questions);
+                        }
+                    });
+                }
             });
     } catch(e) {
         console.log('Error: ', e);
