@@ -6,13 +6,14 @@ var mongoose = require('mongoose'),
 var jwt = require('jsonwebtoken');
 
 // Takes in
+// make new
 exports.create_instructor = function(req, res) {
     var new_instructor = new Instructor(req.body);
     new_instructor.save(function (err, user) {
         if (err)
             res.send(err);
 
-        //Generate Token
+        // Generate Token
         var token = jwt.sign({data: user}, 'this_is_a_test_secret_do_not_use_for_the_love_of_god', {
             expiresIn: 1440 // expires in 24 hours
         });
@@ -24,24 +25,24 @@ exports.create_instructor = function(req, res) {
         });
     });
 };
-
+// get all
 exports.get_all_instructors = function(req, res) {
-    Instructor.find({}, function(err, instructor) {
+    Instructor.find({}, function(err, instructors) {
         if (err)
             res.send(err);
-        res.json(instructor);
+        res.json(instructors);
     });
 };
-
+// login
 exports.login_instructor = function(req, res) {
     try {
         Instructor.findOne({email: req.body.email, password: req.body.password},
-            function (err, instructor) {
+            function (err, instructors) {
                 if (err) return null;
 
-                if (instructor !== null) {
+                if (instructors !== null) {
                     //Generate Token
-                    var token = jwt.sign({data: instructor}, 'this_is_a_test_secret_do_not_use_for_the_love_of_god', {
+                    var token = jwt.sign({data: instructors}, 'this_is_a_test_secret_do_not_use_for_the_love_of_god', {
                         expiresIn: 1440 // expires in 24 hours
                     });
 

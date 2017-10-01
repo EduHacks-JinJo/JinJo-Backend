@@ -1,7 +1,9 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Instructor = mongoose.model('Instructors');
+    Questions = mongoose.model('Questions');
+
+// create question
 
 exports.create_question = function(req, res) {
     var new_question = new Questions(req.body);
@@ -12,10 +14,29 @@ exports.create_question = function(req, res) {
     });
 };
 
+// get all 
+// don't use this for classrooms
 exports.get_all_questions = function(req, res) {
-    Questions.find({}, function(err, user) {
+    Questions.find({}, function(err, questions) {
         if (err)
             res.send(err);
-        res.json(user);
+        res.json(questions);
     });
+};
+
+// get given a classroomid find questions
+exports.get_questions = function(req,res) {
+try {
+        Questions.findOne({_id: req.body.id},
+            function (err, questions) {
+                if (err) return null;
+                if (questions !== null) {
+                    res.json(questions)
+                }
+            });
+
+    } catch (e) {
+        console.log('Error: ', e);
+        res.json({message: e});
+    }
 };
