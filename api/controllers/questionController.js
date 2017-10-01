@@ -6,8 +6,8 @@ var mongoose = require('mongoose'),
 
 var express = require('express'),
     app = express(),
-    http = require('http').Server(app),
-    socket = require('socket.io')(http);
+    https = require('https').Server(app),
+    socket = require('socket.io')(https);
 
 
 // create question
@@ -28,7 +28,7 @@ exports.create_question = function(req, res) {
 
         Questions.find({
             classID: req.body.roomID
-        }, function(err, questions) {
+        },null, {sort: '-date'}, function(err, questions) {
             if (err) return null;
             if (questions !== null) {
                 io.to(req.body.roomID).emit('questions', questions);
@@ -53,7 +53,7 @@ exports.get_questions = function(req,res) {
     try {
         Questions.find({
             classID: req.body.roomID
-        }, function(err, questions) {
+        },null, {sort: '-date'}, function(err, questions) {
             if (err) return null;
             if (questions !== null) {
                 res.json(questions);
